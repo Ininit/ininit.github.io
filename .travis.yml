@@ -1,0 +1,19 @@
+language: node_js
+dist: trusty
+node_js: stable
+install:
+- npm install hexo-cli -g
+- npm install
+
+before_script:
+- git config --global user.name "ininit"
+- git config --global user.email "meininit@gmail.com"
+- sed -i "s/__TOKEN__/${__TOKEN__}/" _config.yml
+
+script:
+- hexo clean
+- hexo generate
+- hexo deploy
+branches:
+  only:
+  - source
