@@ -4,6 +4,7 @@ node_js: stable
 install:
 - npm install hexo-cli -g
 - npm install
+- npm install hexo-deployer-git --save
 
 before_script:
 - git config --global user.name "ininit"
