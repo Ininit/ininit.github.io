@@ -79,5 +79,5 @@ theme: icarus
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://__TOKEN__@github.com/ininit/ininit.github.io
+  repo: https://__TOKEN__@github.com/Ininit/ininit.github.io
   branch: master

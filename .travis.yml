@@ -7,9 +7,10 @@ install:
 - npm install hexo-deployer-git --save
 
 before_script:
-- git config --global user.name "ininit"
+- git config --global user.name "Ininit"
 - git config --global user.email "meininit@gmail.com"
 - sed -i "s/__TOKEN__/${__TOKEN__}/" _config.yml
+- echo "blog.ininit.me" >> CNAME
 
 script:
 - hexo clean
