@@ -1,6 +1,6 @@
 ---
 title: {{ title }}
 date: {{ date }}
-thumbnail: 
+thumbnail: /gallery/thumbnail/
 tags:
 ---
