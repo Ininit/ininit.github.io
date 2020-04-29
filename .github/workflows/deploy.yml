@@ -31,8 +31,9 @@ jobs:
 
     - name: deploy
       env:
-          __TOKEN__: ${{secrets.DEPLOY_KEY}} 
+          TOKEN: ${{secrets.DEPLOY_KEY}} 
       run: |
+        sed -i "" "s/\_\_TOKEN\_\_/$TOKEN/" _config.yml
         yarn deploy
 
 
