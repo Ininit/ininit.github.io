@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "hexo clean && hexo g",
-    "deploy": "yarn build && hexo d"
+    "deploy": "hexo d"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",

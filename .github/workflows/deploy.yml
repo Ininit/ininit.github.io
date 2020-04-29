@@ -34,6 +34,7 @@ jobs:
           TOKEN: ${{secrets.DEPLOY_KEY}} 
       run: |
         sed -i "" "s/\_\_TOKEN\_\_/$TOKEN/" _config.yml
+        yarn build
         echo "blog.ininit.me" >> public/CNAME
         yarn deploy
 
