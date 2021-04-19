@@ -1,16 +1,5 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-    node: true,
-  },
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:prettier/recommended',
-    'plugin:@typescript-eslint/recommended',
-  ],
-  parser: '@typescript-eslint/parser',
+  extends: ['plugin:prettier/recommended', '@ininit/eslint-config-react'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -18,15 +7,21 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint'],
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': 0,
+    'no-use-before-define': 0,
   },
   overrides: [
     {
       files: ['*.js'],
       rules: {
         '@typescript-eslint/no-var-requires': 0,
+      },
+    },
+    {
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        'no-undef': 0,
       },
     },
   ],

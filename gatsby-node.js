@@ -71,6 +71,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         ) {
           return true
         }
+        return false
       })
 
       if (filteredEdges.length) {
@@ -111,7 +112,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
     const rewriteSlug = (slug) => {
       if (slug.match(/\//g).length > 2) {
-        let tempStr = slug.split('/')
+        const tempStr = slug.split('/')
         slug = `/${tempStr[tempStr.length - 2]}/`
       }
 
