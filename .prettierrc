@@ -2,7 +2,6 @@
   "endOfLine": "lf",
   "semi": false,
   "singleQuote": true,
-  "quoteProps": "preserve",
   "tabWidth": 2,
   "trailingComma": "es5",
   "printWidth": 80
