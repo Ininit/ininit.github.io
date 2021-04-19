@@ -1,19 +1,34 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react'
-import { useState, useEffect } from 'react'
-interface PostListProps {
-  posts: any[]
-}
+import { Link } from 'gatsby'
 
-export default function PostList(props: PostListProps) {
-  const { posts } = props
-  const [currentPostList, setCurrentPostList] = useState<JSX.Element[]>([])
-  useEffect(() => {
-    console.log(posts)
-  }, [])
+const Layout = ({ location, title, children }) => {
+  const rootPath = `${__PATH_PREFIX__}/`
+  const isRootPath = location.pathname === rootPath
+  let header
+
+  if (isRootPath) {
+    header = (
+      <h1 className="main-heading">
+        <Link to="/">{title}</Link>
+      </h1>
+    )
+  } else {
+    header = (
+      <Link className="header-link-home" to="/">
+        {title}
+      </Link>
+    )
+  }
+
   return (
-    <div>
-      <ul>{currentPostList}</ul>
+    <div className="global-wrapper" data-is-root-path={isRootPath}>
+      <header className="global-header">{header}</header>
+      <main>{children}</main>
+      <footer className="footer">
+        © Copyright 2018 - {new Date().getFullYear()} by Ininit
+      </footer>
     </div>
   )
 }
+
+export default Layout

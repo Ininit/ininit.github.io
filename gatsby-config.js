@@ -1,3 +1,4 @@
+const path = require('path')
 const config = require('./_config')
 const { title, description, author, language, siteUrl } = config
 
@@ -5,8 +6,16 @@ const gatsbyConfig = {
   siteMetadata: {
     title,
     description,
-    author,
+    author: {
+      name: author,
+      summary: `A developer`,
+      stack: `JavaScript/Typescript/Go`
+    },
     language,
+    siteUrl,
+    social: {
+      twitter: `@Ininit`
+    }
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -15,14 +24,14 @@ const gatsbyConfig = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
+        path: path.join(__dirname, '/src/images'),
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `markdown-pages`,
-        path: `${__dirname}/_posts`,
+        path: path.join(__dirname, '/_posts'),
       },
     },
     `gatsby-transformer-sharp`,
@@ -210,6 +219,7 @@ const gatsbyConfig = {
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },
+    'gatsby-plugin-pnpm'
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
@@ -220,7 +230,7 @@ if (process.env.NODE_ENV === 'development') {
   gatsbyConfig.plugins.push({
     resolve: `gatsby-source-filesystem`,
     options: {
-      path: `${__dirname}/_drafts`,
+      path: path.join(__dirname, '/_drafts'),
       name: 'markdown-pages',
     },
   })
