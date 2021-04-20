@@ -131,9 +131,6 @@ const gatsbyConfig = {
             edges {
               node {
                 path
-                context {
-                  lastmod
-                }
               }
             }
           }
