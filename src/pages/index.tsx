@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { PageProps, Link, graphql } from 'gatsby'
 
-import Bio from '../components/Bio'
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
 
@@ -28,7 +27,8 @@ type DataProps = {
   }
 }
 
-const BlogIndex: React.FC<PageProps<DataProps>> = ({ data, location }) => {
+const BlogIndex = (props: PageProps<DataProps>) => {
+  const { data, location } = props
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
 
@@ -36,7 +36,6 @@ const BlogIndex: React.FC<PageProps<DataProps>> = ({ data, location }) => {
     return (
       <Layout location={location} title={siteTitle}>
         <SEO title="Ininit`s Blog" />
-        <Bio />
         <p>
           No blog posts found. Add markdown posts to "content/blog" (or the
           directory you specified for the "gatsby-source-filesystem" plugin in
@@ -49,39 +48,29 @@ const BlogIndex: React.FC<PageProps<DataProps>> = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="Ininit`s Blog" />
-      <Bio />
-      <ol style={{ listStyle: 'none' }}>
-        {posts.map((post) => {
-          const title = post.frontmatter.title || post.fields.slug
-
-          return (
-            <li key={post.fields.slug}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
-                  <h2>
-                    <Link to={post.fields.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.frontmatter.date}</small>
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
-                    }}
-                    itemProp="description"
-                  />
-                </section>
-              </article>
-            </li>
-          )
-        })}
-      </ol>
+      <div className="">
+        <ol className="list-none">
+          {posts.map((post) => {
+            const title = post.frontmatter.title || post.fields.slug
+            return (
+              <li className="no-underline mt-2 mb-6" key={post.fields.slug}>
+                <article itemScope itemType="http://schema.org/Article">
+                  <header>
+                    <h2 className="text-lg">
+                      <Link to={post.fields.slug} itemProp="url">
+                        <span itemProp="headline">{title}</span>
+                      </Link>
+                    </h2>
+                    <small className="text-sm -mt-1 opacity-50">
+                      {post.frontmatter.date}
+                    </small>
+                  </header>
+                </article>
+              </li>
+            )
+          })}
+        </ol>
+      </div>
     </Layout>
   )
 }

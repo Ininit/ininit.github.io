@@ -1,32 +1,30 @@
 import * as React from 'react'
 import { Link } from 'gatsby'
+import Header from '../Header'
 
-const Layout = ({ location, title, children }) => {
+interface PropsType {
+  location: Window['location']
+  title: string
+  children: JSX.Element[]
+}
+
+const Layout = (props: PropsType) => {
+  const { location, title, children } = props
   const rootPath = `${__PATH_PREFIX__}/`
   const isRootPath = location.pathname === rootPath
-  let header
-
-  if (isRootPath) {
-    header = (
-      <h1 className="main-heading">
-        <Link to="/">{title}</Link>
-      </h1>
-    )
-  } else {
-    header = (
-      <Link className="header-link-home" to="/">
-        {title}
-      </Link>
-    )
-  }
 
   return (
-    <div className="global-wrapper" data-is-root-path={isRootPath}>
-      <header className="global-header">{header}</header>
-      <main>{children}</main>
-      <footer className="footer">
-        © Copyright 2018 - {new Date().getFullYear()} by Ininit
-      </footer>
+    <div className="pb-10" data-is-root-path={isRootPath}>
+      <Header title={title} />
+      <main className=" max-w-prose m-auto px-7 py-10">
+        {children}
+        <footer className="mt-12 text-sm opacity-50">
+          <Link to="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+            CC BY-NC-SA 4.0
+          </Link>
+          {` ${new Date().getFullYear()} © Ininit`}
+        </footer>
+      </main>
     </div>
   )
 }

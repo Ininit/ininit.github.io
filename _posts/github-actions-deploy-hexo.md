@@ -37,29 +37,30 @@ on:
 
 jobs:
   build:
-    runs-on: macOS-latest ## 选择系统环境
+    runs-on: macOS-latest # 选择系统环境
     steps:
-      - uses: actions/checkout@v1 ## 检出 github 代码
+      - uses: actions/checkout@v1 # 检出 github 代码
 
       - name: use nodejs
-        uses: actions/setup-node@v1 ## 使用 node
+        uses: actions/setup-node@v1 # 使用 node
         with:
-          node-version: '12.x'
+          node-version: 12.x
 
       - name: init
         run: |
           git config --global user.email "meininit@gmail.com"
           git config --global user.name "Ininit"
           npm install -g yarn
-          yarn global add hexo-cli 
+          yarn global add hexo-cli
           yarn add -D hexo-deployer-git ## 使用 hexo deploy 中的 git 需要安装这个插件
+
       - name: yarn install
         run: |
           yarn
 
       - name: deploy
         env:
-          TOKEN: ${{secrets.DEPLOY_KEY}} ## 这里就是在 Secrets 配置的 access token
+          TOKEN: ${{secrets.DEPLOY_KEY}} # 这里就是在 Secrets 配置的 access token
         run: |
           sed -i "" "s/TOKEN/$TOKEN/" _config.yml ## 替换掉配置中的 TOKEN 标记
           yarn build

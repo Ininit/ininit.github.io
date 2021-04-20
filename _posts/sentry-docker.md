@@ -69,39 +69,39 @@ mail.from: '10086@qq.com' # 这个一定要跟username一样不然qq会拒绝
 
 1. 注释掉 `sentry` 的 `redis` 服务
 
-```docker-compose.yml
-...
-  depends_on:
-#   - redis
-    - postgres
-    - memcached
-    - smtp
-...
+```yaml
+# ...
+depends_on:
+  #   - redis
+  - postgres
+  - memcached
+  - smtp
+# ...
 
-...
+# ...
 #  redis:
 #    restart: unless-stopped
 #    image: redis:3.2-alpine
-...
+# ...
 ```
 
 这样我们就将内置的 `redis` 去掉了，下面添加外部 `reids`
 
-```docker-compose.yml
-...
-  environment:
-    SENTRY_REDIS_HOST: redis # 这里不需要注释
-...
+```yaml
+# ...
+environment:
+  SENTRY_REDIS_HOST: redis # 这里不需要注释
+# ...
 ```
 
 如果直接在上面写外部 `redis` 名称是没办法访问到的，通过网上一顿瞎找， 找到可以将容器网络模式设为 `bridge` 桥接。
 
-```docker-compose.yml
-...
-  volumes:
-    - sentry-data:/var/lib/sentry/files
-  network_mode: bridge
-...
+```yml
+# ...
+volumes:
+  - sentry-data:/var/lib/sentry/files
+network_mode: bridge
+# ...
 ```
 
 我们设置这里是不够的，`SMTP`，`memcached`，`postgres` 也需要跟 `web`, `worker`, `cron` 通信，所以我们也要将他们的网络模式设置为 `bridge`。
@@ -112,12 +112,12 @@ mail.from: '10086@qq.com' # 这个一定要跟username一样不然qq会拒绝
 
 通过 google 一顿查询，我们需要通过 link 机制将外部 `redis` 链接到 `web` 等服务
 
-```docker-compose.yml
-...
-  network_mode: bridge
-  external_links:
-    - redis-server: redis # 这里用了别名，因为外部服务名字不叫redis，这里我就将它设置别名方便。
-...
+```yml
+# ...
+network_mode: bridge
+external_links:
+  - redis-server: redis # 这里用了别名，因为外部服务名字不叫redis，这里我就将它设置别名方便。
+# ...
 ```
 
 这种模式是单向的，就是 `sentry` 服务能够访问外部 `redis` 服务， 外部不能访问到 `sentry` 的服务。

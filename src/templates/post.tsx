@@ -1,16 +1,11 @@
 import * as React from 'react'
-import { Link, graphql } from 'gatsby'
+import { PageProps, Link, graphql } from 'gatsby'
 
 import Bio from '../components/Bio'
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
 
-interface postProps {
-  data: any
-  location: any
-}
-
-const BlogPostTemplate = ({ data, location }: postProps) => {
+const BlogPostTemplate = ({ data, location }: PageProps<any>) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
@@ -22,15 +17,18 @@ const BlogPostTemplate = ({ data, location }: postProps) => {
         description={post.frontmatter.description || post.excerpt}
       />
       <article
-        className="blog-post"
+        className="m-auto max-w-prose"
         itemScope
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
+          <h1 className="text-4xl mb-8" itemProp="headline">
+            {post.frontmatter.title}
+          </h1>
+          <p className="text-sm opacity-50">{post.frontmatter.date}</p>
         </header>
         <section
+          className="prose py-10"
           dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
         />
@@ -39,7 +37,7 @@ const BlogPostTemplate = ({ data, location }: postProps) => {
           <Bio />
         </footer>
       </article>
-      <nav className="blog-post-nav">
+      <nav>
         <ul
           style={{
             display: `flex`,

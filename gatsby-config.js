@@ -9,13 +9,13 @@ const gatsbyConfig = {
     author: {
       name: author,
       summary: `A developer`,
-      stack: `JavaScript/Typescript/Go`
+      stack: `JavaScript/Typescript/Go`,
     },
     language,
     siteUrl,
     social: {
-      twitter: `@Ininit`
-    }
+      twitter: `@Ininit`,
+    },
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -116,12 +116,6 @@ const gatsbyConfig = {
       },
     },
     {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography.ts`,
-      },
-    },
-    {
       resolve: `gatsby-plugin-sitemap`,
       options: {
         output: `/sitemap.xml`,
@@ -219,7 +213,9 @@ const gatsbyConfig = {
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },
-    'gatsby-plugin-pnpm'
+    'gatsby-plugin-postcss',
+    'gatsby-plugin-pnpm',
+    'gatsby-plugin-eslint',
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
