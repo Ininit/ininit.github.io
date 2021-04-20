@@ -140,7 +140,6 @@ const gatsbyConfig = {
             return {
               url: site.siteMetadata.siteUrl + edge.node.path,
               changefreq: `daily`,
-              lastmod: edge.node.context.lastmod,
               priority: 0.7,
             }
           })
