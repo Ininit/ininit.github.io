@@ -10,6 +10,8 @@ module.exports = {
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': 0,
     'no-use-before-define': 0,
+    'react/no-unescaped-entities': 0,
+    indent: 0,
   },
   overrides: [
     {
