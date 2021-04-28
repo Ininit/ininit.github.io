@@ -35,3 +35,7 @@ Cron 是一款类 Unix 的操作系统下基于时间的任务管理系统。用
 | L    | Day-of-Month 和 Day-of-Week 中 最后一天，XL 倒数 X 天               |
 | W    | Day-of-Month 中，用来描述最近的工作日，LW 最后一个周五              |
 | #    | Day-of-week 中，指定这个月的第几个周几，6#3 指第三个周五            |
+
+## 备注
+
+每个平台规范不一致，在 GitHub schedule 使用的是 [POSIX cron syntax](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07)。可以用 [crontab guru](https://crontab.guru/) 生成自己想要的 Cron。
