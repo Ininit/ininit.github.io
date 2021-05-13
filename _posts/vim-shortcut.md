@@ -123,6 +123,19 @@ tags: ['vim']
 | `.            | 跳转到最后一次执行改变的精确位置（行和列） |
 | ‘.            | 跳转到最后一次执行改变的行起始位置         |
 
+## 键盘映射(Map)
+
+| 命令            | 常规模式 | 可视化模式 | 运算符模式 | 插入模式 | 命令行模式 |
+| --------------- | -------- | ---------- | ---------- | -------- | ---------- |
+| :map :noremap   | y        | y          | y          |          |            |
+| :nmap :nnoremap | y        |            |            |          |            |
+| :vmap :vnoremap |          | y          |            |          |            |
+| :omap :onoremap |          |            | y          |          |            |
+| :map! :noremap! |          |            |            | y        | y          |
+| :imap :inoremap |          |            |            | y        |            |
+| :cmap :cnoremap |          |            |            |          | y          |
+
 ## Reference
 
 https://linux.cn/article-8144-1.html
+https://zhuanlan.zhihu.com/p/24713018
