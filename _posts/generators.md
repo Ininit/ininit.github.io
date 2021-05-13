@@ -150,7 +150,7 @@ class InputImpl implements Input {
 console.log([...tokenize(new InputImpl('1+44-2'))])
 ```
 
-## Referenc
+## Reference
 
 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Generator
 
