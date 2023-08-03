@@ -26,7 +26,7 @@
     "gatsby-remark-katex": "^5.0.0",
     "gatsby-remark-prismjs": "^5.0.0",
     "gatsby-source-filesystem": "^3.3.0",
-    "gatsby-transformer-remark": "^4.0.0",
+    "gatsby-transformer-remark": "^5.25.1",
     "gatsby-transformer-sharp": "^3.3.0",
     "katex": "^0.13.2",
     "prism-theme-vars": "^0.2.2",
